@@ -72,7 +72,6 @@ public class ConsoleReader {
             month = Integer.parseInt(parts[1]);
             day = Integer.parseInt(parts[2]);
         } catch (NumberFormatException e) {
-            // Aquí es donde controlas el caso de "letras"
             throw new InvalidUserInputException("Date contains non-numeric values: \"" + line + "\"", e);
         }
 

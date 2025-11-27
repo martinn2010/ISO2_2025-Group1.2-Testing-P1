@@ -1,8 +1,5 @@
 package domain;
 
-/**
- * Immutable date representation.
- */
 public class MyDate {
 
     private final int year;

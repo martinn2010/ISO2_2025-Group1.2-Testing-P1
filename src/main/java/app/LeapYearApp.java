@@ -12,23 +12,22 @@ public class LeapYearApp {
     public static void main(String[] args) {
         ConsoleReader reader = new ConsoleReader();
         ConsoleWriter writer = new ConsoleWriter();
-
+        System.out.println ("Please introduce a date <YYYY-MM-DD>:");
         try {
-            // El usuario introduce una fecha tipo 2024-02-29 en una línea
             MyDate date = reader.readDate();
 
             boolean isLeap = LeapYearCalculator.isLeapYear(date);
 
             if (isLeap) {
-                writer.printLine("LEAP");
+                writer.printLine("The year is leap");
             } else {
-                writer.printLine("NO_LEAP");
+                writer.printLine("The year is not leap");
             }
 
         } catch (InvalidUserInputException e) {
-            writer.printLine("INPUT_ERROR: " + e.getMessage());
+            writer.printLine("Error in input: " + e.getMessage());
         } catch (InvalidDateException e) {
-            writer.printLine("DATE_ERROR: " + e.getMessage());
+            writer.printLine("Error in date: " + e.getMessage());
         }
     }
 }

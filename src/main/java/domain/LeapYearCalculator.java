@@ -1,12 +1,7 @@
 package domain;
-
-/**
- * Business logic for leap year calculation.
- */
 public final class LeapYearCalculator {
 
     private LeapYearCalculator() {
-        // Utility class, prevent instantiation
     }
 
     public static boolean isLeapYear(MyDate date) {
