@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MyDate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ISO2-2025-Grupo12-Testing-P1</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">MyDate.java</span></div><h1>MyDate.java</h1><pre class="source lang-java linenums">package domain;
+
+public class MyDate {
+
+    private final int year;
+    private final int month;
+    private final int day;
+
+<span class="fc" id="L9">    public MyDate(int year, int month, int day) throws InvalidDateException {</span>
+<span class="fc" id="L10">        validate(year, month, day);</span>
+<span class="fc" id="L11">        this.year = year;</span>
+<span class="fc" id="L12">        this.month = month;</span>
+<span class="fc" id="L13">        this.day = day;</span>
+<span class="fc" id="L14">    }</span>
+
+    private void validate(int year, int month, int day) throws InvalidDateException {
+<span class="fc" id="L17">        validateYear(year);</span>
+<span class="fc" id="L18">        validateMonth(month);</span>
+<span class="fc" id="L19">        validateDay(year, month, day);</span>
+<span class="fc" id="L20">    }</span>
+
+    private void validateYear(int year) throws InvalidDateException {
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if (year &lt; 0) {</span>
+<span class="fc" id="L24">            throw new InvalidDateException(&quot;Year cannot be negative: &quot; + year);</span>
+        }
+<span class="fc" id="L26">    }</span>
+
+    private void validateMonth(int month) throws InvalidDateException {
+<span class="fc bfc" id="L29" title="All 4 branches covered.">        if (month &lt; 1 || month &gt; 12) {</span>
+<span class="fc" id="L30">            throw new InvalidDateException(&quot;Month must be between 1 and 12: &quot; + month);</span>
+        }
+<span class="fc" id="L32">    }</span>
+
+    private void validateDay(int year, int month, int day) throws InvalidDateException {
+<span class="fc" id="L35">        int maxDay = daysInMonth(year, month);</span>
+
+<span class="fc bfc" id="L37" title="All 4 branches covered.">        if (day &lt; 1 || day &gt; maxDay) {</span>
+<span class="fc" id="L38">            throw new InvalidDateException(</span>
+                &quot;Day &quot; + day + &quot; is not valid for month &quot; + month + &quot; and year &quot; + year
+            );
+        }
+<span class="fc" id="L42">    }</span>
+
+    private int daysInMonth(int year, int month) {
+        int days;
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (month == 2) {</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            if (LeapYearCalculator.isLeapYear(year)) {</span>
+<span class="fc" id="L49">                days = 29;</span>
+            } else {
+<span class="fc" id="L51">                days = 28;</span>
+            }
+<span class="pc bpc" id="L53" title="2 of 8 branches missed.">        } else if (month == 4 || month == 6 || month == 9 || month == 11) {</span>
+<span class="fc" id="L54">            days = 30;</span>
+        } else {
+<span class="fc" id="L56">            days = 31;</span>
+        }
+
+<span class="fc" id="L59">        return days;</span>
+    }
+
+    public int getYear() {
+<span class="fc" id="L63">        return year;</span>
+    }
+
+    public int getMonth() {
+<span class="nc" id="L67">        return month;</span>
+    }
+
+    public int getDay() {
+<span class="fc" id="L71">        return day;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        String m = month &lt; 10 ? &quot;0&quot; + month : String.valueOf(month);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        String d = day   &lt; 10 ? &quot;0&quot; + day   : String.valueOf(day);</span>
+<span class="fc" id="L78">        return year + &quot;-&quot; + m + &quot;-&quot; + d;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
